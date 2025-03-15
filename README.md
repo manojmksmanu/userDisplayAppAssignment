@@ -1,50 +1,115 @@
-# Welcome to your Expo app 👋
+# User Directory App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native Expo mobile application that fetches and displays user data from the Random Data API. The app shows detailed information for 80 users, with navigation controls to browse through the user list.
 
-## Get started
+## Features
 
-1. Install dependencies
+- Fetches data for 80 users from Random Data API
+- Displays user information including:
+  - ID
+  - UID
+  - Password
+  - First Name
+  - Last Name
+  - Username
+  - Email
+  - Avatar (user image)
+- Navigation buttons to move between users
+- Error handling for API failures
+- Loading states for improved user experience
 
-   ```bash
+## Installation
+
+### Prerequisites
+
+- Node.js (v14 or later)
+- npm or yarn
+- Expo CLI (`npm install -g expo-cli`)
+
+### Setup Instructions
+
+1. Clone the repository:
+
+   ```
+   git clone https://github.com/manojmksmanu/userDisplayAppAssignment.git
+   cd user-directory
+   ```
+
+2. Install dependencies:
+
+   ```
    npm install
    ```
 
-2. Start the app
+   or if you use yarn:
 
-   ```bash
-    npx expo start
+   ```
+   yarn install
    ```
 
-In the output, you'll find options to open the app in a
+3. Start the Expo development server:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```
+   npx expo start
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+4. Run the app:
+   - Scan the QR code with Expo Go app on your Android device
+   - For iOS, scan the QR code with your camera app and follow the prompt
+   - Press 'i' to open in iOS simulator (requires Xcode)
+   - Press 'a' to open in Android emulator (requires Android Studio)
 
-## Get a fresh project
+## Project Structure
 
-When you're ready, run:
+src/
+├── app/
+│ ├── \_layout.tsx # Root layout configuration
+│ └── index.tsx # Main app component with user list and navigation
+├── components/
+│ └── UserCard.tsx # Reusable component for user details
+├── services/
+│ └── api.ts # API fetching logic using Axios
+├── app.json # Expo configuration file
+├── assets/ # App icons and splash screen images
+└── tsconfig.json # TypeScript configuration
 
-```bash
-npm run reset-project
+app/_layout.tsx: Defines the app’s root layout (minimal unless using Expo Router).
+
+app/index.tsx: Core application logic, state management, and UI rendering.
+
+components/UserCard.tsx: Displays individual user info with an avatar and loading state.
+
+services/api.ts: Handles API calls with Axios for modularity.
+
+## API Integration
+
+The app fetches user data from the Random Data API:
+
+```
+https://random-data-api.com/api/users/random_user?size=80
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Technical Implementation
 
-## Learn more
+Technical Implementation
 
-To learn more about developing your project with Expo, look at the following resources:
+Language: TypeScript for type safety
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+State Management: useState for managing users, loading, and error states
 
-## Join the community
+useEffect for initial data fetching
 
-Join our community of developers creating universal apps.
+useCallback for memoizing API calls
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+API Fetching: Axios with error handling and timeout support
+
+UI Components: React Native core components (View, Text, Image, etc.)
+
+Expo’s LinearGradient for styling
+
+Navigation: Custom state-based navigation using currentUserIndex
+
+Error Handling: Try/catch with user-friendly messages
+
+Image Loading: ActivityIndicator placeholder for avatars
+
